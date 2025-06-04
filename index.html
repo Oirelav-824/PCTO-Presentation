@@ -2,104 +2,147 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Internship</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Highlights</title>
     <style>
         body {
-            background: #e8f5e9;
-            color: #222;
-            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            font-family: Georgia, serif;
+            background-color: rgb(43, 38, 38);
+            color: rgb(139, 207, 117);
+            line-height: 1.6;
             margin: 0;
-            padding: 0;
+            padding: 0 20px;
         }
-        .slide {
-            width: 80vw;
-            height: 80vh;
-            margin: 5vh auto;
-            background: #a5d6a7;
+
+        header {
+            padding: 40px 0;
+            background-color: rgb(196, 194, 194);
             border-radius: 20px;
-            box-shadow: 0 4px 24px rgba(34, 139, 34, 0.2);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: background 0.5s;
+            color: rgb(31, 94, 47);
+            max-width: 900px;
+            margin: 20px auto;
         }
-        h1, h2 {
-            color: #1b5e20;
+
+        section {
+            margin: 20px auto;
+            border-radius: 20px;
+            padding: 20px;
+            background-color: rgb(31, 94, 47);
+            box-shadow: 0 2px 10px;
+            max-width: 900px;
         }
-        .next-btn {
-            margin-top: 2em;
-            padding: 0.5em 2em;
-            background: #388e3c;
-            color: #fff;
+
+        h2 {
+            color: rgb(139, 207, 117);
+        }
+
+        .detail {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .btn-toggle {
+            display: inline-block;
+            border-radius: 20px;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: rgb(43, 38, 38);
+            color: rgb(196, 194, 194);
             border: none;
-            border-radius: 8px;
-            font-size: 1.2em;
             cursor: pointer;
-            transition: background 0.3s;
+            font-size: 1em;
         }
-        .next-btn:hover {
-            background: #2e7d32;
+
+        .btn-toggle:hover {
+            background-color: rgb(196, 194, 194);
+            color: rgb(43, 38, 38);
+        }
+
+        /* ✅ Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 10px;
+                font-size: 0.95em;
+            }
+
+            header, section {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+
+            .btn-toggle {
+                width: 100%;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
+
+            .btn-toggle {
+                font-size: 0.95em;
+                padding: 8px 12px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="slide" id="slide">
-        <img id="logo" src="unnamed.png" alt="Logo" style="width:120px; margin-bottom: 1em;">
-        <img id="Joseph" src="YourNextLine.png" alt="Next-line Logo" style="width:120px; display: none;">
-        <img id="nodered" src="node-red.png" alt="Node-RED Logo" style="width:120px; display: none;">
-        <h1>Welcome to everyone</h1>
-        <h2>This is my Internship</h2>
-        <button class="next-btn" onclick="nextSlide()">Next</button>
+
+<header>
+    <h1>Welcome to My Internship Presentation</h1>
+    <p>This page outlines the key topics and technologies I explored during my internship.</p>
+</header>
+
+<section>
+    <h2>Introduction</h2>
+    <p>I started my internship with a curiosity about IoT and automation.</p>
+</section>
+
+<section>
+    <h2>Node-RED</h2>
+    <p>I used Node-RED to create simple automation flows.</p>
+    <button class="btn-toggle" onclick="toggleDetail('detail-node')">Learn More</button>
+    <div class="detail" id="detail-node">
+        <p>Node-RED is a flow-based development tool for visual programming. I used it to create logic for smart home components like motion detectors and smart lights.</p>
     </div>
-    <script>
-        const slides = [
-            {
-                title: "Welcome to everyone",
-                subtitle: "This is my Internship",
-                showLogo: true,
-                showJoseph: false,
-                showNodeRed: false
-            },
-            {
-                
-                title: "Your next line will be, 'What have you done?'",
-                subtitle: "I've worked on a side project",
-                showLogo: false,
-                showJoseph: true,
-                showNodeRed: false
-                
-            },
-            {
-                title: "Node-RED!",
-                subtitle: "An IoT platform for automation",
-                showLogo: false
-                , showJoseph: false,
-                showNodeRed: true
-                
-            },
-            {
-                title: "Thank You!",
-                subtitle: "Your next line will be, 'You can go now!'",
-                showLogo: false,
-                showJoseph: true,
-                showNodeRed: false
-            }
-        ];
-        let current = 0;
-        function nextSlide() {
-            current = (current + 1) % slides.length;
-            const slide = document.getElementById('slide');
-            slide.innerHTML = `
-                ${slides[current].showLogo ? '<img id="logo" src="unnamed.png" alt="Logo" style="width:120px; margin-bottom: 1em;">' : ''}
-                ${slides[current].showJoseph ? '<img id="Joseph" src="YourNextLine.png" alt="Next-Line Logo" style="width:120px;">' : ''}
-                 ${slides[current].showNodeRed ? '<img id="nodered" src="node-red.png" alt="Node-RED Logo" style="width:120px;">' : ''}
-               
-                <h1>${slides[current].title}</h1>
-                <h2>${slides[current].subtitle}</h2>
-                <button class="next-btn" onclick="nextSlide()">Next</button>
-            `;
-        }
-    </script>
+</section>
+
+<section>
+    <h2>Side Project</h2>
+    <p>Developed a small smart home system using sensors and relays.</p>
+    <button class="btn-toggle" onclick="toggleDetail('detail-project')">Learn More</button>
+    <div class="detail" id="detail-project">
+        <p>The project included temperature monitoring, motion detection, and remote control of devices. I integrated it with a simple dashboard for real-time updates.</p>
+    </div>
+</section>
+
+<section>
+    <h2>Challenges & Learnings</h2>
+    <p>Faced issues with device integration and data flow consistency.</p>
+    <button class="btn-toggle" onclick="toggleDetail('detail-challenges')">Learn More</button>
+    <div class="detail" id="detail-challenges">
+        <p>I learned to debug MQTT data issues and optimize flow timing. Working with asynchronous data taught me the value of real-time debugging tools.</p>
+    </div>
+</section>
+
+<section>
+    <h2>Conclusion</h2>
+    <p>This internship was a great step forward in understanding IoT platforms and flow-based logic.</p>
+</section>
+
+<script>
+    function toggleDetail(id) {
+        const element = document.getElementById(id);
+        element.style.display = (element.style.display === "block") ? "none" : "block";
+    }
+</script>
+
 </body>
 </html>
